@@ -440,7 +440,7 @@ extension PresentrController {
             return
         }
 
-        var swipeLimit: CGFloat = 400
+        var swipeLimit: CGFloat = 200
         if shouldSwipeTop {
             swipeLimit = -swipeLimit
         }
