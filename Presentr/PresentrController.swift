@@ -436,13 +436,13 @@ extension PresentrController {
     func swipeGestureChanged(gesture: UIPanGestureRecognizer) {
         let amount = gesture.translation(in: presentedViewController.view)
 
-        
+//
 //        if shouldSwipeTop && amount.y > 0 {
 //            return
 //        } else
-            if shouldSwipeBottom && amount.y < 0 {
-            return
-        }
+//            if shouldSwipeBottom && amount.y < 0 {
+//            return
+//        }
 
         var swipeLimit: CGFloat = 100
         if shouldSwipeTop {
@@ -452,11 +452,12 @@ extension PresentrController {
         presentedViewController.view.center = CGPoint(x: presentedViewCenter.x, y: presentedViewCenter.y + amount.y)
 
         let dismiss = shouldSwipeTop ? (amount.y < swipeLimit) : ( amount.y > swipeLimit)
+        let swipeUp = (amount.y > swipeLimit)
         if dismiss && latestShouldDismiss {
             presentedViewIsBeingDissmissed = true
             gesture.isEnabled = false
             presentedViewController.dismiss(animated: dismissAnimated, completion: nil)
-        } else {
+        } else if swipeUp {
             UIView.animate(withDuration: 0.5,
                            delay: 0,
                            usingSpringWithDamping: 0.5,
