@@ -93,6 +93,8 @@ class PresentrController: UIPresentationController, UIAdaptivePresentationContro
 		let defaultDirection = dismissOnSwipeDirection == .default
         return defaultDirection ? presentationType == .topHalf : dismissOnSwipeDirection == .top
     }()
+    
+ 
 
     // MARK: - Init
 
@@ -434,13 +436,15 @@ extension PresentrController {
     func swipeGestureChanged(gesture: UIPanGestureRecognizer) {
         let amount = gesture.translation(in: presentedViewController.view)
 
-        if shouldSwipeTop && amount.y > 0 {
-            return
-        } else if shouldSwipeBottom && amount.y < 0 {
+        
+//        if shouldSwipeTop && amount.y > 0 {
+//            return
+//        } else
+            if shouldSwipeBottom && amount.y < 0 {
             return
         }
 
-        var swipeLimit: CGFloat = 200
+        var swipeLimit: CGFloat = 100
         if shouldSwipeTop {
             swipeLimit = -swipeLimit
         }
@@ -451,6 +455,18 @@ extension PresentrController {
         if dismiss && latestShouldDismiss {
             presentedViewIsBeingDissmissed = true
             presentedViewController.dismiss(animated: dismissAnimated, completion: nil)
+        } else {
+            UIView.animate(withDuration: 0.5,
+                           delay: 0,
+                           usingSpringWithDamping: 0.5,
+                           initialSpringVelocity: 1,
+                           options: [],
+                           animations: {
+                            let newFrame = CGRect(x: self.presentedViewFrame.origin.x, y: self.presentedViewFrame.origin.y, width: self.presentedViewFrame.width, height: self.presentedViewFrame.height + 500)
+                            //self.presentedViewController.view.frame = self.presentedViewFrame
+                            self.presentedViewController.view.frame = newFrame
+            }, completion: nil)
+            
         }
     }
 

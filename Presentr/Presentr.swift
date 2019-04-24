@@ -25,6 +25,7 @@ public enum DismissSwipeDirection {
     case `default`
     case bottom
     case top
+    case bottomWithTopAdding
 }
 
 /// The action that should happen when the background is tapped.
