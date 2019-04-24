@@ -457,19 +457,20 @@ extension PresentrController {
             presentedViewIsBeingDissmissed = true
             gesture.isEnabled = false
             presentedViewController.dismiss(animated: dismissAnimated, completion: nil)
-        } else if swipeUp {
-            UIView.animate(withDuration: 0.5,
-                           delay: 0,
-                           usingSpringWithDamping: 0.5,
-                           initialSpringVelocity: 1,
-                           options: [],
-                           animations: {
-                            let newFrame = CGRect(x: self.presentedViewFrame.origin.x, y: self.presentedViewFrame.origin.y, width: self.presentedViewFrame.width, height: self.presentedViewFrame.height + 500)
-                            //self.presentedViewController.view.frame = self.presentedViewFrame
-                            self.presentedViewController.view.frame = newFrame
-            }, completion: nil)
-            
         }
+//        else if swipeUp {
+//            UIView.animate(withDuration: 0.5,
+//                           delay: 0,
+//                           usingSpringWithDamping: 0.5,
+//                           initialSpringVelocity: 1,
+//                           options: [],
+//                           animations: {
+//                            let newFrame = CGRect(x: self.presentedViewFrame.origin.x, y: self.presentedViewFrame.origin.y, width: self.presentedViewFrame.width, height: self.presentedViewFrame.height + 500)
+//                            //self.presentedViewController.view.frame = self.presentedViewFrame
+//                            self.presentedViewController.view.frame = newFrame
+//            }, completion: nil)
+//
+//        }
     }
 
     func swipeGestureEnded() {
