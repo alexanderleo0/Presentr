@@ -454,6 +454,7 @@ extension PresentrController {
         let dismiss = shouldSwipeTop ? (amount.y < swipeLimit) : ( amount.y > swipeLimit)
         if dismiss && latestShouldDismiss {
             presentedViewIsBeingDissmissed = true
+            gesture.isEnabled = false
             presentedViewController.dismiss(animated: dismissAnimated, completion: nil)
         } else {
             UIView.animate(withDuration: 0.5,
